@@ -7,7 +7,7 @@ import { Observable } from '../../../../node_modules/rxjs';
 })
 export class WeatherService {
 
-  private apiUrl: string = 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api';
+  private apiUrl: string = 'https://www.metaweather.com/api';
 
   constructor( private http: HttpClient) { }
 
