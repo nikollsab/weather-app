@@ -1,4 +1,6 @@
-<mat-drawer-container class="container" autosize>
+<app-loading *ngIf="estaCargando"></app-loading>
+
+<mat-drawer-container class="container" autosize *ngIf="!estaCargando">
     <mat-drawer #drawer class="sidenav-content " mode="side" opened>
 
         <div class="fondo">

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
-import { ThemePalette } from '@angular/material/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-sidenav',
@@ -9,10 +8,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
-
-  color: ThemePalette = 'primary';
-  mode: ProgressSpinnerMode = 'indeterminate';
-  value = 50;
+  estaCargando = false;
 
   ciudad: string = '418440';
 
@@ -46,6 +42,7 @@ export class SidenavComponent {
     this.weather.getLocalizacionPorId(ciudad).subscribe(
       resp => {
 
+        this.estaCargando = false;
         this.iconos = [];
         this.datosProximosDias = resp['consolidated_weather'];
         this.datosHoy = this.datosProximosDias.shift();
@@ -93,7 +90,9 @@ export class SidenavComponent {
 
         }
       }
-    );
+    ); 
+
+    this.estaCargando =true;
 
   }
 

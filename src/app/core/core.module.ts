@@ -4,6 +4,7 @@ import { DestacadosComponent } from './pages/destacados/destacados.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { BuscarComponent } from './components/buscar/buscar.component';
 import { UiModule } from '../ui/ui.module';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -11,7 +12,7 @@ import { UiModule } from '../ui/ui.module';
   declarations: [
     DestacadosComponent, 
     SidenavComponent, 
-    BuscarComponent],
+    BuscarComponent, LoadingComponent],
   imports: [
     CommonModule,
     UiModule
