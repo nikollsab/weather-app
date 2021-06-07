@@ -1,0 +1,8 @@
+<mat-form-field class="example-full-width">
+    <mat-label>Busca una ciudad</mat-label>
+    <input 
+            matInput 
+            placeholder="Ejemplo: Lima"
+            (keyup.enter)="onBuscar( txtBuscar.value )"
+            #txtBuscar >
+</mat-form-field>

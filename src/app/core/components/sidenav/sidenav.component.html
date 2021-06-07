@@ -1,0 +1,73 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav-content " mode="side" opened>
+
+        <div class="fondo">
+            <div class="nube nube-derecha">
+                <i class="fas fa-cloud"></i>
+            </div>
+            <div class="nube">
+                <i class="fas fa-cloud"></i>
+            </div>
+            <div class="nube nube-derecha">
+                <i class="fas fa-cloud"></i>
+            </div>
+            <div class="nube">
+                <i class="fas fa-cloud"></i>
+            </div>
+        </div>
+
+        <div class="div-info">
+            <div class="botones btn-buscar">
+                <button mat-raised-button color="primary" (click)="buscarBoton()" *ngIf="mostrarInfo">Buscar</button>
+            </div>
+
+            <div class="botones btn-cerrar">
+                <button type="icon" mat-button *ngIf="mostrarBusqueda" (click)="cerrarBusqueda()">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            </div>
+
+            <div class="buscar">
+                <app-buscar *ngIf="mostrarBusqueda" (buscar)="buscarPorNombre($event)"></app-buscar>
+
+            </div>
+
+            <div class="contenedor-sidebar" *ngIf="mostrarInfo">
+
+                <div class="icono">
+                    <i [class]="iconos[0]"></i>
+                </div>
+                <div>
+                    <strong class="temperatura-numero">{{datosHoy['the_temp'] | number: '.0-0'}}</strong>
+                    <span> °C</span>
+                </div>
+
+                <div class="temperatura-texto">
+                    {{datosHoy['weather_state_name']}}
+                </div>
+
+                <div class="footer">
+                    <div>Hoy</div>
+                    <div>
+                        <i class="fas fa-circle "></i>
+                    </div>
+                    <div> {{hoy | date : 'mediumDate'}} </div>
+                </div>
+
+            </div>
+        </div>
+
+    </mat-drawer>
+
+    <div>
+        <button type="icon" mat-button (click)="drawer.toggle()" class="boton-sidenav">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <app-destacados *ngIf="!mostrarError" [titulo]="titulo" [datosHoy]="datosHoy" [datosProximosDias]="datosProximosDias" [iconos]="iconos">
+        </app-destacados>
+
+        <mat-card *ngIf="mostrarError">No se encontró resultados</mat-card>
+    </div>
+
+</mat-drawer-container>

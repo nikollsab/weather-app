@@ -1,0 +1,62 @@
+<div class="container">
+
+    <h1>{{titulo}}</h1>
+
+    <div class="proximos-dias-card">
+        <mat-card *ngFor="let clima of datosProximosDias; index as i" class="col-12 col-sm-6 col-md-4 col-lg-3 tarjeta">
+            <div>{{clima.applicable_date | date : 'mediumDate'}}</div>
+
+            <div class="icono">
+                <i [class]="iconos[i]"></i>
+            </div>
+
+            <div>
+                <span>{{ clima.max_temp | number: '0.0-0'}}°C </span>
+                <span>{{ clima.min_temp | number: '0.0-0'}}°C</span>
+            </div>
+        </mat-card>
+
+    </div>
+
+    <h1>Destacados de hoy</h1>
+
+    <div class="hoy-card">
+
+        <mat-card class="tarjetaHoy">
+            <div>Estado del Viento</div>
+            <div class="contenedor-info">
+                <strong class="tarjeta-info"> {{ datosHoy['wind_speed'] | number: '.0-0'}} </strong>
+                <span> kph</span>
+            </div>
+        </mat-card>
+
+        <mat-card class="tarjetaHoy">
+            <div>Humedad</div>
+            <div class="contenedor-info">
+                <strong class="tarjeta-info"> {{ datosHoy['humidity']}} </strong>
+                <span> %</span>
+            </div>
+        </mat-card>
+    </div>
+
+    <div class="hoy-card">
+
+        <mat-card class="tarjetaHoy">
+            <div>Visibilidad</div>
+            <div class="contenedor-info">
+                <strong class="tarjeta-info"> {{ datosHoy['visibility'] | number: '.1-1'}}</strong>
+                <span> kilómetros</span>
+            </div>
+        </mat-card>
+
+        <mat-card class="tarjetaHoy">
+            <div>Presión del aire</div>
+            <div class="contenedor-info">
+                <strong class="tarjeta-info">{{ datosHoy['air_pressure'] }}</strong>
+                <span> mb</span>
+            </div>
+        </mat-card>
+
+    </div>
+
+</div>

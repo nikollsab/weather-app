@@ -1,0 +1,89 @@
+.container {
+    height: 100vh;
+    background-color : #030416;
+}
+
+
+mat-drawer {
+    background-color : #030416;
+}
+
+mat-card {
+    background-color: #18192d;
+    margin: 10px;
+    color:white;
+}
+.sidenav-content {
+    background-color:  #18192d;
+    min-width: 30%;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer {
+      width: 100%;
+      display: inline-flex;
+      color: white;
+      justify-content: space-evenly
+  }
+    .botones{
+      width: 100%;
+      display: inline-flex;
+      color: white;
+  }
+
+  .btn-cerrar{
+    justify-content: flex-end;
+  }
+  
+.icono{
+    font-size: 150px;
+    color: #64ffda;
+    margin: 10px;
+}
+
+.contenedor-sidebar {
+    text-align: center;
+}
+
+.temperatura-numero , .temperatura-texto {
+    color: white;
+}
+
+
+.temperatura-numero {
+    font-size: 100px;
+}
+
+.temperatura-texto {
+    margin-top: 20px;
+    font-size: xx-large;
+    min-height: 80px;
+}
+
+.boton-sidenav {
+    background-color: transparent;
+    color: white;
+    border: none;
+}
+
+
+.fondo {
+    position: absolute;
+}
+
+.nube {
+    font-size: 120px;
+    color: #ffffff10;
+    z-index: 0;
+}
+
+.nube-derecha {
+    margin-left: 100px;
+}
+
+.div-info {
+   position: relative;
+   z-index: 1;
+}

@@ -1,0 +1,44 @@
+.container {
+    padding: 20px;
+}
+mat-card {
+    background-color: #18192d;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+h1 {
+    font-weight: 500;
+}
+
+
+
+.icono{
+    font-size: 50px;
+    color: #448aff;
+    margin: 10px;
+}
+
+.tarjeta , .tarjetaHoy{
+    text-align: center;
+    color: white;
+}
+
+.tarjetaHoy {
+    width: 40%;
+}
+
+.contenedor-info{
+    margin: 10px;
+}
+.tarjeta-info {
+    font-size: xx-large;
+}
+
+.proximos-dias-card, .hoy-card{
+    width: 100%;
+    display: inline-flex;
+    text-align: center;
+    justify-content: space-between;
+}
