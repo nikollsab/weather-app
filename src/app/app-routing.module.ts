@@ -4,17 +4,16 @@ import { SidenavComponent } from './core/components/sidenav/sidenav.component';
 
 const routes: Routes = [
 
-  // {
-  //   path: '',
-  //   loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
-  // },
-
   {
     path: '',
     redirectTo: 'destacados',
     pathMatch: 'full'
   },
   { path: 'destacados', component: SidenavComponent },
+  {
+    path: '**',
+    redirectTo: ''
+   }
 ];
 
 @NgModule({

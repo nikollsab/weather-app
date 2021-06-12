@@ -37,9 +37,11 @@ export class BuscarComponent {
 
     this.weather.getLocalizacion(ciudad).subscribe(
       resp => {
-
-        this.datos = resp[0];
+        this.datos = resp;
         this.buscar.emit(this.datos);
+      },
+      (error) => {
+        this.buscar.emit(['error']);        
       });
 
   }

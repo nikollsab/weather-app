@@ -8,14 +8,14 @@ mat-card {
     margin-right: 10px;
 }
 
-h1 {
+h1, h2 {
     font-weight: 500;
 }
 
 
 
 .icono{
-    font-size: 50px;
+    font-size: 40px;
     color: #448aff;
     margin: 10px;
 }
@@ -36,9 +36,20 @@ h1 {
     font-size: xx-large;
 }
 
-.proximos-dias-card, .hoy-card{
-    width: 100%;
+.tarjetaTemperatura, .hoy-card{
+   
     display: inline-flex;
     text-align: center;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.hoy-card{
+    width: 100%;
+}
+
+.tarjetaTemperatura {
+    width: 100%;
+}
+.bandera {
+    width: 100px;
 }

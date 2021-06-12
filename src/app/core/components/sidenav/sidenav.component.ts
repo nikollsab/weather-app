@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,16 +10,17 @@ import { WeatherService } from '../../services/weather.service';
 export class SidenavComponent {
   estaCargando = false;
 
-  ciudad: string = '418440';
+  ciudad: string = '3936456';
 
   hoy: Date = new Date();
 
   datosHoy: {};
   datosProximosDias: string[] = [];
 
-  iconoHoy: string;
+  icono: string;
   clima: string;
   titulo: string;
+  pais: string;
 
 
   iconos: string[] = [];
@@ -28,10 +29,10 @@ export class SidenavComponent {
   mostrarBusqueda: boolean = false;
 
   mostrarError: boolean = false;
+  ImageSource: any;
+  base: any;
 
-
-
-  constructor(private weather: WeatherService) {
+  constructor(private weather: WeatherService, private sanitizer: DomSanitizer) {
 
     this.buscar();
 
@@ -40,70 +41,56 @@ export class SidenavComponent {
   buscar(ciudad: string = this.ciudad) {
     this.datosHoy = '';
     this.weather.getLocalizacionPorId(ciudad).subscribe(
-      resp => {
+      (resp) => {
 
+        console.log(resp);
         this.estaCargando = false;
         this.iconos = [];
-        this.datosProximosDias = resp['consolidated_weather'];
-        this.datosHoy = this.datosProximosDias.shift();
-        this.titulo = resp['title'];
+        this.datosHoy = resp;
+        this.titulo = resp['name'];
+        this.pais = resp['sys']['country'];
 
-        let temperaturaHoy: string = this.datosHoy['weather_state_abbr'];
+        this.iconos.push(this.datosHoy['weather'][0]['description']);
 
-        if (temperaturaHoy === 'lc') {
-          this.iconos.push('fas fa-cloud-sun');
+        var cadena = this.iconos[0];
+        var filtroNube = "nub";
+        var filtroLluvia = "lluv";
+        var filtroLlovizna = "llov";
+        var filtroCieloClaro = "cie";
+
+        var indexNube = cadena.indexOf(filtroNube);
+        var indexLluvia = cadena.indexOf(filtroLluvia);
+        var indexLlovizna = cadena.indexOf(filtroLlovizna);
+        var indexCieloClaro = cadena.indexOf(filtroCieloClaro);
+
+        if (indexNube >= 0) {
+          this.icono = 'fas fa-cloud-meatball';
+        } else if (indexLluvia >= 0) {
+          this.icono = 'fas fa-cloud-rain';
+        } else if (indexLlovizna >= 0) {
+          this.icono = 'fas fa-cloud-showers-heavy';
+        } else if (indexCieloClaro >= 0) {
+          this.icono = 'fas fa-cloud-sun';
         }
-        else if (temperaturaHoy === 'hc' ){
-          this.iconos.push('fas fa-cloud-meatball');
-        } else if (temperaturaHoy === 'lr' ){
-          this.iconos.push('fas fa-cloud-sun-rain');
-        } 
-        else if (temperaturaHoy === 'hr' ){
-          this.iconos.push('fas fa-cloud-showers-heavy');
-        }         
-        else if (temperaturaHoy === 's') {
-          this.iconos.push('fas fa-cloud-rain');
-        }else if (temperaturaHoy === 'c') {
-          this.iconos.push('fas fa-cloud');
+        else {
+          console.log("la palabra no existe dentro de la cadena");
         }
 
-        for (const data of this.datosProximosDias) {
-
-          let temperatura: string = data['weather_state_abbr'];
-
-          if (temperatura === 'lc') {
-            this.iconos.push('fas fa-cloud-sun');
-          }
-          else if (temperatura === 'hc' ){
-            this.iconos.push('fas fa-cloud-meatball');
-          } else if (temperatura === 'lr' ){
-            this.iconos.push('fas fa-cloud-sun-rain');
-          } 
-          else if (temperatura === 'hr' ){
-            this.iconos.push('fas fa-cloud-showers-heavy');
-          }         
-          else if (temperatura === 's') {
-            this.iconos.push('fas fa-cloud-rain');
-          }  else if (temperatura === 'c') {
-            this.iconos.push('fas fa-cloud');
-          }
-
-        }
       }
-    ); 
+    );
 
-    this.estaCargando =true;
+    this.estaCargando = true;
 
   }
 
 
   // Busqueda mediante el input
   buscarPorNombre(ciudad: string) {
-    
-    if (ciudad == undefined) {
+
+    if (ciudad == 'error') {
       this.mostrarError = true;
     } else {
-      this.buscar(ciudad['woeid'].toString());
+      this.buscar(ciudad['id'].toString());
       this.mostrarError = false;
     }
 

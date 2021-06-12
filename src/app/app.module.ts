@@ -8,7 +8,6 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AppComponent

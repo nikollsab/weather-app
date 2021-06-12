@@ -7,12 +7,12 @@ import { UiModule } from '../ui/ui.module';
 import { LoadingComponent } from './components/loading/loading.component';
 
 
-
 @NgModule({
   declarations: [
     DestacadosComponent, 
     SidenavComponent, 
-    BuscarComponent, LoadingComponent],
+    BuscarComponent, 
+    LoadingComponent],
   imports: [
     CommonModule,
     UiModule
